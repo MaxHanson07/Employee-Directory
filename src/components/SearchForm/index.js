@@ -17,9 +17,9 @@ function SearchForm(props) {
           id="employee"
         />
         <datalist id="employees">
-          {props.employees.map(employee => (
+          {/* {props.employees.map(employee => (
             <option value={employee} key={employee} />
-          ))}
+          ))} */}
         </datalist>
         <button type="submit" onClick={props.handleFormSubmit} className="btn btn-success">
           Search

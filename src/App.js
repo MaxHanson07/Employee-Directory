@@ -22,7 +22,20 @@ class App extends Component {
 
   componentDidMount() {
     API.getRandomEmployees()
-      .then(res => this.setState({ employees: res.data.message }))
+      .then(res => {
+        let items = res.data.results.map(item => {
+          return {
+            image: item.picture.thumbnail,
+            name: item.name.first + " " + item.name.last,
+            phone: item.phone,
+            email: item.email,
+            dob: item.dob.age
+          }
+        })
+        this.setState({
+          data: items
+        })
+      })
       .catch(err => console.log(err));
   }
 

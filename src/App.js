@@ -40,7 +40,10 @@ class App extends Component {
   }
 
   handleInputChange = event => {
-    this.setState({ app: event.target.value });
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   // handleFormSubmit = event => {
@@ -55,7 +58,7 @@ class App extends Component {
             handleInputChange={this.handleInputChange}
             employees={this.state.employees}
           />
-          <SearchResults results={this.state.results} />
+          <SearchResults data={this.state.data} />
       </div>
     );
   }

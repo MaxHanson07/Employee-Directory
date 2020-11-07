@@ -4,7 +4,7 @@ export default function SearchResultRow(props) {
 
     return (
         <tr>
-        <th scope="row">img src={props.image}</th>
+        <th scope="row"><img src={props.image}/></th>
         <td>{props.name}</td>
         <td>{props.phone}</td>
         <td>{props.email}</td>

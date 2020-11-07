@@ -1,20 +1,23 @@
 import React from "react";
+import SearchResultRow from "../SearchResultRow";
 // import "./style.css";
 
-function SearchResults(props) {
-  return (
-    <ul className="list-group search-results">
-      {/* {props.results.map(result => (
-        <li key={result} className="list-group-item">
-          <img alt="Employees" src={result.picture.thumbnail} className="img-fluid" />
-          <p>{result.name}</p>
-          <p>{result.phone}</p>
-          <p>{result.email}</p>
-          <p>{result.dob.age}</p>
-        </li>
-      ))} */}
-    </ul>
-  );
-}
+export default function SearchResults(props) {
 
-export default SearchResults;
+    return (
+        <table className="table">
+            <thead className="thead">
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.data.map(item => <SearchResultRow image={item.image} name={item.name} phone={item.phone} email={item.email} dob={item.dob} />)}
+            </tbody>
+        </table>
+    )
+}

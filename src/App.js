@@ -11,6 +11,8 @@ class App extends Component {
     super();
     this.state = {
       data: [],
+      matchingCriteria: [],
+      filter: "",
       orderedState: {
         name: 0,
         phone: 0,
@@ -41,10 +43,16 @@ class App extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
+    const searchCriteria = this.searchByName(value);
     this.setState({
-      [name]: value
+      [name]: value,
+      matchingCriteria: searchCriteria
     });
   };
+
+  searchByName = filterStr => {
+    return this.state.data.filter(item => item.name.toLowerCase().include(filterStr.toLowerCase()))
+  }
 
   // handleFormSubmit = event => {
 
@@ -52,13 +60,13 @@ class App extends Component {
   render() {
     return (
       <div>
-          <h1 className="text-center">Search By Employee Name!</h1>
-          <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            employees={this.state.employees}
-          />
-          <SearchResults data={this.state.data} />
+        <h1 className="text-center">Search By Employee Name!</h1>
+        <SearchForm
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+          employees={this.state.employees}
+        />
+        <SearchResults data={this.state.data} />
       </div>
     );
   }

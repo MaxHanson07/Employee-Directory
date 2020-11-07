@@ -46,12 +46,15 @@ class App extends Component {
     const name = event.target.name;
     const value = event.target.value;
     console.log(name);
-    console.log(value);
-    const searchCriteria = this.searchByName(value);
+    console.log(value)
     this.setState({
-      [name]: value,
-      matchingCriteria: searchCriteria
+      [name]: value   
     });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    this.searchByName(this.state.name);
   };
 
   searchByName = filterStr => {
@@ -63,9 +66,9 @@ class App extends Component {
       <div>
         <h1 className="text-center">Search By Employee Name!</h1>
         <SearchForm
-          search={this.state.search}
+          filter={this.state.search}
           handleInputChange={this.handleInputChange}
-          // handleFormSubmit={this.handleFormSubmit}
+          handleFormSubmit={this.handleFormSubmit}
           employees={this.state.matchingCriteria}
         />
         <SearchResults data={this.state.data} />

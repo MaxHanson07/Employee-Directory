@@ -42,7 +42,11 @@ class App extends Component {
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    event.preventDefault();
+    const name = event.target.name;
+    const value = event.target.value;
+    console.log(name);
+    console.log(value);
     const searchCriteria = this.searchByName(value);
     this.setState({
       [name]: value,
@@ -51,20 +55,18 @@ class App extends Component {
   };
 
   searchByName = filterStr => {
-    return this.state.data.filter(item => item.name.toLowerCase().include(filterStr.toLowerCase()))
+    return this.state.data.filter(item => item.name.toLowerCase().includes(filterStr.toLowerCase()))
   }
 
-  // handleFormSubmit = event => {
-
-  // };
   render() {
     return (
       <div>
         <h1 className="text-center">Search By Employee Name!</h1>
         <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
+          search={this.state.search}
           handleInputChange={this.handleInputChange}
-          employees={this.state.employees}
+          // handleFormSubmit={this.handleFormSubmit}
+          employees={this.state.matchingCriteria}
         />
         <SearchResults data={this.state.data} />
       </div>
